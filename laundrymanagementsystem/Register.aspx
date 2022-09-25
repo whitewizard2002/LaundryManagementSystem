@@ -84,6 +84,18 @@
                 </tr>
                 <tr>
                     <td class="auto-style4">
+                        <asp:Label ID="GenderLbl" runat="server" Text="Gender"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:RadioButtonList ID="GenderRBL" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Value="M">Male</asp:ListItem>
+                            <asp:ListItem Value="FM">Female</asp:ListItem>
+                            <asp:ListItem Value="O">Other</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">
                         Already have an account?<br />
                         <asp:HyperLink ID="loginHyperLink" runat="server" ForeColor="Blue" NavigateUrl="~/Home.aspx">Login Here</asp:HyperLink>
                     </td>

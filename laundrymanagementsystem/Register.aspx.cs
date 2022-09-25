@@ -20,30 +20,33 @@ namespace laundrymanagementsystem
         protected void registerBtn_Click(object sender, EventArgs e)
         {
             string conStr = WebConfigurationManager.ConnectionStrings["UsersConnection"].ConnectionString;
+            //Response.Write(conStr);
             SqlConnection con = new SqlConnection(conStr);
             string name = TextBox1.Text;
             string email = TextBox2.Text;
             string password = TextBox3.Text;
             string phoneno = TextBox4.Text;
             string Address = TextBox5.Text;
+            string Gender = GenderRBL.SelectedValue;
 
             try
             {
                 using (con)
                 {
-                    string query1 = "SELECT * FROM Users WHERE Email=@Email";
+                    string query1 = "SELECT * FROM [Users] WHERE Email=@Email";
                     SqlCommand cmd1 = new SqlCommand(query1, con);
                     cmd1.Parameters.AddWithValue("@Email", email);
 
                     con.Open();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd1);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd1);
                     DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    sda.Fill(dt);
                     con.Close();
 
-                    if(dt.Rows.Count>=1)
+                    if(dt.Rows.Count==1)
                     {
                         //Email Exists
+                        //Response.Write("Value of temp: "+temp);
                         emailExistLabel.Text = "Email already exists!";
                     }
 
@@ -52,11 +55,13 @@ namespace laundrymanagementsystem
                         //Response.Write("Entered Else ");
                         try
                         {
-                            string query2 = "INSERT INTO Users(Name,Email,Password,PhoneNo,Address) VALUES(@Name,@Email,@Password,@PhoneNo,@Address)";
+                            string query2 = "INSERT INTO [Users](Name,Gender,Email,Password,PhoneNo,Address) VALUES(@Name,@Gender,@Email,@Password,@PhoneNo,@Address)";
                             using (con)
                             {
+                                //Response.Write("Gender value: "+Gender);
                                 SqlCommand cmd2 = new SqlCommand(query2, con);
                                 cmd2.Parameters.AddWithValue("@Name", name);
+                                cmd2.Parameters.AddWithValue("@Gender", Gender);
                                 cmd2.Parameters.AddWithValue("@Email", email);
                                 cmd2.Parameters.AddWithValue("@Password", password);
                                 cmd2.Parameters.AddWithValue("@PhoneNo", phoneno);
@@ -72,6 +77,7 @@ namespace laundrymanagementsystem
 
                         catch (Exception msg)
                         {
+                            //Response.Write("Inner Catch");
                             Response.Write(msg.Message.ToString());
                         }
 

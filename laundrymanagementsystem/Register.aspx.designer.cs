@@ -159,6 +159,24 @@ namespace laundrymanagementsystem
         protected global::System.Web.UI.WebControls.TextBox TextBox5;
 
         /// <summary>
+        /// GenderLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label GenderLbl;
+
+        /// <summary>
+        /// GenderRBL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList GenderRBL;
+
+        /// <summary>
         /// loginHyperLink control.
         /// </summary>
         /// <remarks>

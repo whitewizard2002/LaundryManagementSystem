@@ -27,8 +27,11 @@ namespace laundrymanagementsystem
 
             if(email=="admin@gmail.com" && password=="Admin1234")
             {
+                Session["userId"] = "-1";
+                Session["userName"] = "Admin";
+                Session["userGender"] = "Other";
+                Session["userEmailId"] = "admin@gmail.com";
                 Response.Redirect("");//To Admin DashBoard
-
             }
 
             try
@@ -44,14 +47,39 @@ namespace laundrymanagementsystem
                     con.Close();
                     if (temp==1)
                     {
-                        Response.Redirect(""); // to User DashBoard
+                        query = "SELECT * FROM Users WHERE Email=@Email AND Password=@Password";
+                        DataTable dt = new DataTable();
+                        
+                        try
+                        {
+                            SqlCommand cmd2 = new SqlCommand(query,con);
+                            cmd2.Parameters.AddWithValue("@Email", email);
+                            cmd2.Parameters.AddWithValue("@Password", password);
+
+                            con.Open();
+                            SqlDataAdapter sda = new SqlDataAdapter(cmd2);
+                            sda.Fill(dt);
+                            con.Close();
+                        }
+                        catch(Exception msg)
+                        {
+                            Response.Write("From MSG: "+ msg.Message.ToString());
+                        }
+
+
+                        Session["userId"] = dt.Rows[0][0];
+                        Session["userName"] = dt.Rows[0][1];
+                        Session["userGender"] = dt.Rows[0][2];
+                        Session["userEmailId"] = dt.Rows[0][3];
+                        //Response.Write("You were Logged In");
+                        Response.Redirect("~/UserDashboard.aspx"); // to User DashBoard
                     }
                 }
             }
 
             catch (Exception mes)
             {
-                Console.WriteLine(mes.Message.ToString());
+                Response.Write("From MES: "+ mes.Message.ToString());
             }
         }
 
