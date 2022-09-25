@@ -67,19 +67,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminDashboard.aspx" />
     <Content Include="App_Data\Laundry.mdf" />
     <Content Include="App_Data\Laundry_log.ldf">
       <DependentUpon>Laundry.mdf</DependentUpon>
     </Content>
+    <Content Include="ChangeProfileA.aspx" />
     <Content Include="ChangeProfileU.aspx" />
     <Content Include="CreateLaundryRecord.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="UserDashboard.aspx" />
+    <Content Include="ViewLaundryRecordA.aspx" />
     <Content Include="ViewLaundryRecordU.aspx" />
+    <Content Include="ViewUsers.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDashboard.aspx.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDashboard.aspx.designer.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeProfileA.aspx.cs">
+      <DependentUpon>ChangeProfileA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeProfileA.aspx.designer.cs">
+      <DependentUpon>ChangeProfileA.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangeProfileU.aspx.cs">
       <DependentUpon>ChangeProfileU.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,12 +134,26 @@
     <Compile Include="UserDashboard.aspx.designer.cs">
       <DependentUpon>UserDashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewLaundryRecordA.aspx.cs">
+      <DependentUpon>ViewLaundryRecordA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewLaundryRecordA.aspx.designer.cs">
+      <DependentUpon>ViewLaundryRecordA.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewLaundryRecordU.aspx.cs">
       <DependentUpon>ViewLaundryRecordU.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewLaundryRecordU.aspx.designer.cs">
       <DependentUpon>ViewLaundryRecordU.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUsers.aspx.cs">
+      <DependentUpon>ViewUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewUsers.aspx.designer.cs">
+      <DependentUpon>ViewUsers.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

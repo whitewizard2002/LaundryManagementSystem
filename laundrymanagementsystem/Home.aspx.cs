@@ -69,7 +69,6 @@ namespace laundrymanagementsystem
 
                         Session["userId"] = dt.Rows[0][0];
                         Session["userName"] = dt.Rows[0][1];
-                        Session["userGender"] = dt.Rows[0][2];
                         Session["userEmailId"] = dt.Rows[0][3];
                         //Response.Write("You were Logged In");
                         Response.Redirect("~/UserDashboard.aspx"); // to User DashBoard

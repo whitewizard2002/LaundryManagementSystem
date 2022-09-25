@@ -62,6 +62,8 @@ namespace laundrymanagementsystem
                         con.Open();
                         cmd2.ExecuteNonQuery();
                         con.Close();
+                        Session["userName"] = name;
+                        Session["userEmailId"] = email;
 
                         Response.Write("Profile Updated");
 
