@@ -16,9 +16,9 @@ namespace laundrymanagementsystem
             string conStr = WebConfigurationManager.ConnectionStrings["UsersConnection"].ConnectionString;
             SqlConnection con = new SqlConnection(conStr);
 
-            string pndquery = "SELECT * FROM LaundryRecord WHERE Pending=True";
-            string cmpquery = "SELECT * FROM LaundryRecord WHERE Completed=True";
-            string paidQuery = "SELECT * FROM LaundryRecord WHERE Paid=True";
+            string pndquery = "SELECT * FROM LaundryRecord WHERE Pending='True'";
+            string cmpquery = "SELECT * FROM LaundryRecord WHERE Completed='True'";
+            string paidQuery = "SELECT * FROM LaundryRecord WHERE Paid='True'";
 
             try
             {
@@ -29,19 +29,20 @@ namespace laundrymanagementsystem
                     SqlCommand cmd3 = new SqlCommand(paidQuery, con);
 
                     con.Open();
-                    SqlDataReader rdr = cmd1.ExecuteReader();
-                    GVPndRecord.DataSource = rdr;
+                    SqlDataReader rdr1 = cmd1.ExecuteReader();
+                    GVPndRecord.DataSource = rdr1;
                     GVPndRecord.DataBind();
+                    rdr1.Close();
 
-                    rdr = cmd2.ExecuteReader();
-                    GVCompRecord.DataSource = rdr;
+                    SqlDataReader rdr2 = cmd2.ExecuteReader();
+                    GVCompRecord.DataSource = rdr2;
                     GVCompRecord.DataBind();
+                    rdr2.Close();
 
-                    rdr = cmd3.ExecuteReader();
-                    GVPaidRecord.DataSource = rdr;
+                    SqlDataReader rdr3 = cmd3.ExecuteReader();
+                    GVPaidRecord.DataSource = rdr3;
                     GVPaidRecord.DataBind();
-
-                    rdr.Close();
+                    rdr3.Close();
                     con.Close();
                 }
             }

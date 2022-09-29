@@ -50,8 +50,22 @@ namespace laundrymanagementsystem
                         emailExistLabel.Text = "Email already exists!";
                     }
 
+
+                    query1 = "SELECT * FROM Admins WHERE Email=@Email";
+                    cmd1 = new SqlCommand(query1,con);
+                    cmd1.Parameters.AddWithValue("@Email",email);
+                    con.Open();
+                    sda = new SqlDataAdapter(cmd1);
+                    dt = new DataTable();
+                    sda.Fill(dt);
+                    con.Close();
+
+                    if (dt.Rows.Count == 1)
+                        emailExistLabel.Text = "Email Already Exists!";
+
                     else
                     {
+                        emailExistLabel.Text = "";
                         //Response.Write("Entered Else ");
                         try
                         {

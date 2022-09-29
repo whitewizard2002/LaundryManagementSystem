@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,6 +17,33 @@ namespace laundrymanagementsystem
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
+            string conStr = WebConfigurationManager.ConnectionStrings["UsersConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(conStr);
+
+            string email = nEmail.Text;
+            string password = nPassword.Text;
+
+            string query = "UPDATE Admins SET Email=@Email , Password=@Password WHERE Id=@Id";
+            try
+            {
+                using (con)
+                {
+                    SqlCommand cmd = new SqlCommand(query,con);
+                    cmd.Parameters.AddWithValue("@Id",Session["userId"]);
+                    cmd.Parameters.AddWithValue("@Email",email);
+                    cmd.Parameters.AddWithValue("@Password",password);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    Response.Write("Admin Profile Changed");
+                }
+            }
+            catch(Exception msg)
+            {
+                Response.Write(msg.Message.ToString());
+            }
 
         }
     }

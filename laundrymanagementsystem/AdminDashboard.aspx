@@ -15,6 +15,9 @@
             <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Change Profile" Width="177px" />
             <br />
             <br />
+            <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="View Users" Width="175px" />
+            <br />
+            <br />
             <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Log Out" />
         </div>
     </form>

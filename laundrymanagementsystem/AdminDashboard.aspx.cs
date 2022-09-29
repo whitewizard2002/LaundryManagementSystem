@@ -21,13 +21,18 @@ namespace laundrymanagementsystem
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("");
+            Response.Redirect("~/ChangeProfileA.aspx");
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
             Session.Clear();
             Response.Redirect("~/Home.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ViewUsers.aspx");
         }
     }
 }
