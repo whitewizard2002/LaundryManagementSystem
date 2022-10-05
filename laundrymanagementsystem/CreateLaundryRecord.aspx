@@ -90,6 +90,11 @@
                     <td class="auto-style6" colspan="2">
                         <br />
                         <asp:Button ID="crtReqBtn" runat="server" Text="Create Request" Width="167px" OnClick="crtReqBtn_Click" />
+                        <br />
+                        <br />
+                        <asp:Label ID="Label5" runat="server" Text="Laundry Record Added"></asp:Label>
+                        <br />
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Go Back" />
                     </td>
                 </tr>
             </table>

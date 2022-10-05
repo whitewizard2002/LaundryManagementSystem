@@ -16,6 +16,12 @@
             <br />
             <br />
             <asp:Button ID="cPBtn" runat="server" Text="Change Profile" Width="147px" OnClick="cPBtn_Click" />
+            <br />
+            <br />
+            <asp:Button ID="dPrfBtn" runat="server" OnClick="dPrfBtn_Click" Text="Delete Profile" Width="146px" />
+            <br />
+            <br />
+            <asp:Button ID="logOutBtn" runat="server" OnClick="logOutBtn_Click" Text="Log Out" />
         </div>
     </form>
 </body>

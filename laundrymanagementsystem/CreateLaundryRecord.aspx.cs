@@ -13,7 +13,8 @@ namespace laundrymanagementsystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Label5.Visible = false;
+            Button1.Visible = false;
         }
 
         protected void crtReqBtn_Click(object sender, EventArgs e)
@@ -31,6 +32,7 @@ namespace laundrymanagementsystem
                 {
                     string query = "INSERT INTO [LaundryRecord](Name,NoOfItem,Weight,Price,Pending,Completed,Paid,Gender,DateOfCompletion) VALUES(@Name,@NoOfItem,@Weight,@Price,@Pending,@Completed,@Paid,@Gender,@DateOfCompletion)";
                     SqlCommand cmd = new SqlCommand(query,con);
+                    //cmd.Parameters.AddWithValue("@Id",Session["userId"]);
                     cmd.Parameters.AddWithValue("@Name",Session["userName"]);
                     cmd.Parameters.AddWithValue("@NoOfItem",noOfItems);
                     cmd.Parameters.AddWithValue("@Weight",weight);
@@ -45,6 +47,9 @@ namespace laundrymanagementsystem
                     cmd.ExecuteNonQuery();
                     con.Close();
 
+                    Label5.Visible = true;
+                    Button1.Visible = true;
+
                 }
 
                 //Response.Write("Request Added");
@@ -55,6 +60,11 @@ namespace laundrymanagementsystem
                 Response.Write("Outer Catch: " + msg.Message.ToString());
             }
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UserDashboard.aspx");
         }
     }
 }

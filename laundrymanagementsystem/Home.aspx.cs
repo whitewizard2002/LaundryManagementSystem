@@ -46,7 +46,7 @@ namespace laundrymanagementsystem
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
-
+                    con.Close();
                     if (dt.Rows.Count >= 1)
                     {
                         Session["userId"] =dt.Rows[0][0];
@@ -62,7 +62,7 @@ namespace laundrymanagementsystem
                         cmd2.Parameters.AddWithValue("@Email", email);
                         cmd2.Parameters.AddWithValue("@Password", password);
                         con.Open();
-                        int temp = Convert.ToInt32(cmd.ExecuteScalar());
+                        int temp = Convert.ToInt32(cmd2.ExecuteScalar());
                         con.Close();
                         if (temp == 1)
                         {
@@ -81,6 +81,7 @@ namespace laundrymanagementsystem
 
                             Session["userId"] = dt2.Rows[0][0];
                             Session["userName"] = dt2.Rows[0][1];
+                            Session["userGender"] = dt2.Rows[0][2];
                             Session["userEmailId"] = dt2.Rows[0][3];
                             //Response.Write("You were Logged In");
                             Response.Redirect("~/UserDashboard.aspx"); // to User DashBoard

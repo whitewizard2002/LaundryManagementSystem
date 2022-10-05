@@ -37,7 +37,7 @@ namespace laundrymanagementsystem
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                    Response.Write("Admin Profile Changed");
+                    Response.Redirect("~/AdminDashboard.aspx");
                 }
             }
             catch(Exception msg)
