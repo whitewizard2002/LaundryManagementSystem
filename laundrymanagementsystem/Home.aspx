@@ -24,7 +24,7 @@
             width: 158px;
         }
         .auto-style6 {
-            width: 182px;
+            width: 267px;
             height: 86px;
         }
         .auto-style7 {
@@ -64,7 +64,7 @@
         }
 
         #uEmail,#uPassword{
-            border-radius:10px;
+            border-radius:5px;
             border: 1px solid grey;
         }
 
@@ -103,10 +103,9 @@
             </tr>
             <tr>
                 <td class="auto-style4">
-                    <asp:Label ID="Label2" runat="server" Text="Email Address"></asp:Label>
                 </td>
                 <td class="auto-style6">
-                    <asp:TextBox ID="uEmail" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="uEmail" runat="server" placeholder="Email Address"></asp:TextBox>
                 </td>
                 <td class="auto-style5">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="uEmail" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Email is Required</asp:RequiredFieldValidator>
@@ -116,10 +115,9 @@
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="Password"></asp:Label>
                 </td>
                 <td class="auto-style7">
-                    <asp:TextBox ID="uPassword" runat="server" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="uPassword" runat="server" TextMode="Password" placeholder="Password"></asp:TextBox>
                 </td>
                 <td class="auto-style12">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="uPassword" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Password is Required</asp:RequiredFieldValidator>
@@ -128,9 +126,9 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    </td>
+                </td>
                 <td class="auto-style10">
-                    <asp:Button class="btn btn-primary" ID="loginSubmitBtn" runat="server" OnClick="loginSubmitBtn_Click" Text="Login" />
+                    <center><asp:Button class="btn btn-primary" ID="loginSubmitBtn" runat="server" OnClick="loginSubmitBtn_Click" Text="Login" /></center>
                 </td>
                 <td class="auto-style13">
                     &nbsp;</td>

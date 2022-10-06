@@ -65,8 +65,8 @@ namespace laundrymanagementsystem
                         Session["userName"] = name;
                         Session["userEmailId"] = email;
 
-                        Response.Write("Profile Updated");
-
+                        //Response.Write("Profile Updated");
+                        Response.Redirect("~/UserDashboard.aspx");
                     }
 
                     //Response.Write("Profile Changed!");
@@ -77,6 +77,12 @@ namespace laundrymanagementsystem
             {
                 Response.Write(msg.Message.ToString());
             }
+        }
+
+        protected void logOut_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("~/Home.aspx");
         }
     }
 }
