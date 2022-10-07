@@ -50,7 +50,7 @@ namespace laundrymanagementsystem
         protected void logOutBtn_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("~Home.aspx");
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

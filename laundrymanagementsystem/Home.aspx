@@ -102,16 +102,20 @@
                 </td>
             </tr>
             <tr>
+
                 <td class="auto-style4">
                 </td>
+
                 <td class="auto-style6">
                     <asp:TextBox ID="uEmail" runat="server" placeholder="Email Address"></asp:TextBox>
                 </td>
+
                 <td class="auto-style5">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="uEmail" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Email is Required</asp:RequiredFieldValidator>
                     <br />
                     <asp:RegularExpressionValidator ID="incorrectEmailRE" runat="server" ControlToValidate="uEmail" ErrorMessage="Incorrect Email Pattern" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </td>
+
             </tr>
             <tr>
                 <td class="auto-style2">
