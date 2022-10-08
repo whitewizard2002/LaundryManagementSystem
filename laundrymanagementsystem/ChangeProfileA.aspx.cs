@@ -41,6 +41,8 @@ namespace laundrymanagementsystem
                     cmd.ExecuteNonQuery();
                     con.Close();
 
+                    Session["userEmailId"] = email;
+
                     Response.Redirect("~/AdminDashboard.aspx");
                 }
             }

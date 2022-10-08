@@ -54,7 +54,7 @@ namespace laundrymanagementsystem
                         cmd = new SqlCommand(paidRecordQuery, con);
                         cmd.Parameters.AddWithValue("@Paid",1);
                         int paidRCount = Convert.ToInt32(cmd.ExecuteScalar());
-                        paidRecordL.Text = pendRCount.ToString();
+                        paidRecordL.Text = paidRCount.ToString();
                         paidRecordL.Visible = true;
                         con.Close();
 
@@ -62,18 +62,18 @@ namespace laundrymanagementsystem
                         cmd = new SqlCommand(compRecordQuery, con);
                         cmd.Parameters.AddWithValue("@Completed",1);
                         int compRCount = Convert.ToInt32(cmd.ExecuteScalar());
-                        compRecordL.Text = pendRCount.ToString();
+                        compRecordL.Text = compRCount.ToString();
                         compRecordL.Visible = true;
                         con.Close();
 
                         con.Open();
                         cmd = new SqlCommand(nUsersQuery, con);
                         int userRCount = Convert.ToInt32(cmd.ExecuteScalar());
-                        nUsersL.Text = pendRCount.ToString();
+                        nUsersL.Text = userRCount.ToString();
                         nUsersL.Visible = true;
                         con.Close();
 
-                        Response.Write(pendRCount);
+                        //Response.Write(pendRCount);
                     }
                 }
                 catch(Exception msg)
