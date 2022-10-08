@@ -13,42 +13,50 @@ namespace laundrymanagementsystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string conStr = WebConfigurationManager.ConnectionStrings["UsersConnection"].ConnectionString;
-            SqlConnection con = new SqlConnection(conStr);
-
-            string pndquery = "SELECT * FROM LaundryRecord WHERE Pending='True'";
-            string cmpquery = "SELECT * FROM LaundryRecord WHERE Completed='True'";
-            string paidQuery = "SELECT * FROM LaundryRecord WHERE Paid='True'";
-
-            try
+            if(Session["userId"]!=null && Session["userName"]!=null && Session["userEmailId"]!=null)
             {
-                using(con)
+                string conStr = WebConfigurationManager.ConnectionStrings["UsersConnection"].ConnectionString;
+                SqlConnection con = new SqlConnection(conStr);
+
+                string pndquery = "SELECT * FROM LaundryRecord WHERE Pending='True'";
+                string cmpquery = "SELECT * FROM LaundryRecord WHERE Completed='True'";
+                string paidQuery = "SELECT * FROM LaundryRecord WHERE Paid='True'";
+
+                try
                 {
-                    SqlCommand cmd1 = new SqlCommand(pndquery, con);
-                    SqlCommand cmd2 = new SqlCommand(cmpquery,con);
-                    SqlCommand cmd3 = new SqlCommand(paidQuery, con);
+                    using(con)
+                    {
+                        SqlCommand cmd1 = new SqlCommand(pndquery, con);
+                        SqlCommand cmd2 = new SqlCommand(cmpquery,con);
+                        SqlCommand cmd3 = new SqlCommand(paidQuery, con);
 
-                    con.Open();
-                    SqlDataReader rdr1 = cmd1.ExecuteReader();
-                    GVPendRecord.DataSource = rdr1;
-                    GVPendRecord.DataBind();
-                    rdr1.Close();
+                        con.Open();
+                        SqlDataReader rdr1 = cmd1.ExecuteReader();
+                        GVPendRecord.DataSource = rdr1;
+                        GVPendRecord.DataBind();
+                        rdr1.Close();
 
-                    SqlDataReader rdr2 = cmd2.ExecuteReader();
-                    GVCompRecord.DataSource = rdr2;
-                    GVCompRecord.DataBind();
-                    rdr2.Close();
+                        SqlDataReader rdr2 = cmd2.ExecuteReader();
+                        GVCompRecord.DataSource = rdr2;
+                        GVCompRecord.DataBind();
+                        rdr2.Close();
 
-                    SqlDataReader rdr3 = cmd3.ExecuteReader();
-                    GVPaidRecord.DataSource = rdr3;
-                    GVPaidRecord.DataBind();
-                    rdr3.Close();
-                    con.Close();
+                        SqlDataReader rdr3 = cmd3.ExecuteReader();
+                        GVPaidRecord.DataSource = rdr3;
+                        GVPaidRecord.DataBind();
+                        rdr3.Close();
+                        con.Close();
+                    }
+                }
+                catch(Exception msg)
+                {
+                    Response.Write(msg.Message.ToString());
                 }
             }
-            catch(Exception msg)
+
+            else
             {
-                Response.Write(msg.Message.ToString());
+                Response.Redirect("~/Home.aspx");
             }
         }
 
@@ -96,6 +104,12 @@ namespace laundrymanagementsystem
             {
                 Response.Write(msg.Message.ToString());
             }
+        }
+
+        protected void logOutBtn_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

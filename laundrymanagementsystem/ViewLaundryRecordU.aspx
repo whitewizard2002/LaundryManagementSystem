@@ -23,6 +23,7 @@
             color:white;
             border:none;
             border-radius:3px;
+            border:none;
             background-color:red;
         }
 

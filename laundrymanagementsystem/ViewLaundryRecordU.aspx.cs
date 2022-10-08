@@ -13,52 +13,60 @@ namespace laundrymanagementsystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string conStr = WebConfigurationManager.ConnectionStrings["UsersConnection"].ConnectionString;
-            SqlConnection con = new SqlConnection(conStr);
-
-            string query = "SELECT * FROM LaundryRecord WHERE Name=@Name AND Completed=@Completed";
-            string query2 = "SELECT * FROM LaundryRecord WHERE Name=@Name AND Pending=@Pending";
-            string query3 = "SELECT * FROM LaundryRecord WHERE Name=@Name AND Paid=@Paid";
-            try
+            if (Session["userId"]!=null && Session["userName"]!=null && Session["userEmailId"]!=null)
             {
-                using(con)
+                string conStr = WebConfigurationManager.ConnectionStrings["UsersConnection"].ConnectionString;
+                SqlConnection con = new SqlConnection(conStr);
+
+                string query = "SELECT * FROM LaundryRecord WHERE Name=@Name AND Completed=@Completed";
+                string query2 = "SELECT * FROM LaundryRecord WHERE Name=@Name AND Pending=@Pending";
+                string query3 = "SELECT * FROM LaundryRecord WHERE Name=@Name AND Paid=@Paid";
+                try
                 {
-                    SqlCommand cmd = new SqlCommand(query,con);
-                    SqlCommand cmd2 = new SqlCommand(query2,con);
-                    SqlCommand cmd3 = new SqlCommand(query3,con);
+                    using(con)
+                    {
+                        SqlCommand cmd = new SqlCommand(query,con);
+                        SqlCommand cmd2 = new SqlCommand(query2,con);
+                        SqlCommand cmd3 = new SqlCommand(query3,con);
 
-                    cmd.Parameters.AddWithValue("@Name",Session["userName"]);
-                    cmd.Parameters.AddWithValue("@Completed",1);
+                        cmd.Parameters.AddWithValue("@Name",Session["userName"]);
+                        cmd.Parameters.AddWithValue("@Completed",1);
 
-                    cmd2.Parameters.AddWithValue("@Name", Session["userName"]);
-                    cmd2.Parameters.AddWithValue("@Pending",1);
+                        cmd2.Parameters.AddWithValue("@Name", Session["userName"]);
+                        cmd2.Parameters.AddWithValue("@Pending",1);
 
-                    cmd3.Parameters.AddWithValue("@Name", Session["userName"]);
-                    cmd3.Parameters.AddWithValue("@Paid",1);
+                        cmd3.Parameters.AddWithValue("@Name", Session["userName"]);
+                        cmd3.Parameters.AddWithValue("@Paid",1);
 
-                    con.Open();
-                    SqlDataReader sdr = cmd.ExecuteReader();
-                    vLRUserGrid.DataSource = sdr;
-                    vLRUserGrid.DataBind();
-                    sdr.Close();
+                        con.Open();
+                        SqlDataReader sdr = cmd.ExecuteReader();
+                        vLRUserGrid.DataSource = sdr;
+                        vLRUserGrid.DataBind();
+                        sdr.Close();
 
-                    SqlDataReader sdr2 = cmd2.ExecuteReader();
-                    GridView1.DataSource = sdr2;
-                    GridView1.DataBind();
-                    sdr2.Close();
+                        SqlDataReader sdr2 = cmd2.ExecuteReader();
+                        GridView1.DataSource = sdr2;
+                        GridView1.DataBind();
+                        sdr2.Close();
 
-                    SqlDataReader sdr3 = cmd3.ExecuteReader();
-                    GridView2.DataSource = sdr3;
-                    GridView2.DataBind();
-                    sdr3.Close();
+                        SqlDataReader sdr3 = cmd3.ExecuteReader();
+                        GridView2.DataSource = sdr3;
+                        GridView2.DataBind();
+                        sdr3.Close();
 
-                    con.Close();
+                        con.Close();
+                    }
+                }
+
+                catch(Exception msg)
+                {
+                    Response.Write(msg.Message.ToString());
                 }
             }
 
-            catch(Exception msg)
+            else
             {
-                Response.Write(msg.Message.ToString());
+                Response.Redirect("~/Home.aspx");
             }
         }
 

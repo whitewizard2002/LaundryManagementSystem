@@ -13,8 +13,17 @@ namespace laundrymanagementsystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label5.Visible = false;
-            Button1.Visible = false;
+            if(Session["userId"]!=null && Session["userName"]!=null && Session["userEmailId"]!=null)
+            {
+                Label5.Visible = false;
+                Button1.Visible = false;
+            }
+
+            else
+            {
+                Response.Redirect("~/Home.aspx");
+            }
+
         }
 
         protected void crtReqBtn_Click(object sender, EventArgs e)
@@ -65,6 +74,12 @@ namespace laundrymanagementsystem
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UserDashboard.aspx");
+        }
+
+        protected void logOutBtn_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

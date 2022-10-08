@@ -11,13 +11,11 @@
 
     <style>
 
-        body{
+        body,#form1{
             height:100vh;
         }
 
-        #form1{
-            height:100vh;
-        }
+
 
         .pageHeader{
             color:white;

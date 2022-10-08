@@ -14,7 +14,10 @@ namespace laundrymanagementsystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session["userId"]==null || Session["userName"]==null || Session["userEmailId"]==null)
+            {
+                Response.Redirect("~/Home.aspx");
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
