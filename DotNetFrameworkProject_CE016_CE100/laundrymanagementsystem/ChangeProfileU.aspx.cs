@@ -33,6 +33,7 @@ namespace laundrymanagementsystem
             SqlConnection con = new SqlConnection(conStr);
             string query1 = "SELECT * FROM Users WHERE Email=@Email";
             string query2 = "UPDATE Users SET Name = @Name, Gender = @Gender,Email=@Email,Password=@Password,PhoneNo=@PhoneNo,Address=@Address WHERE Id=@Id";
+            string query3 = "UPDATE LaundryRecord SET Name=@Name WHERE Name=@username";
             try
             {
                 using(con)
@@ -53,6 +54,14 @@ namespace laundrymanagementsystem
                     else
                     {
                         emailExists.Text = "";
+
+                        SqlCommand cmd3 = new SqlCommand(query3,con);
+                        cmd3.Parameters.AddWithValue("@Name",name);
+                        cmd3.Parameters.AddWithValue("@username",Session["userName"]);
+                        con.Open();
+                        cmd3.ExecuteNonQuery();
+                        con.Close();
+
                         SqlCommand cmd2 = new SqlCommand(query2, con);
                         cmd2.Parameters.AddWithValue("@Id", Session["userId"]);
                         cmd2.Parameters.AddWithValue("@Name", name);
